@@ -1,0 +1,12 @@
+[package]
+name = "load_switch"
+version = "0.1.0"
+edition = "2021"
+keywords = ["arm", "cortex-m", "load switch"]
+categories = ["embedded", "no-std"]
+license = "MIT"
+authors = ["Zixuan Kang <zkang35@gatech.edu>", "Isaac Weintraub"]
+
+[dependencies.tm4c123x-hal]
+version = "0.10.2"
+features = ["rt"]
