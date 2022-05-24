@@ -1,6 +1,14 @@
 use tm4c123x_hal as hal;
 
 use self::hal::gpio;
+use self::hal::prelude;
+
+#[derive(Copy, Clone, Debug, PartialEq, Eq, Default)]
+pub enum SignalState {
+    #[default]
+    Low,
+    High,
+}
 
 pub trait Pin {}
 
@@ -58,6 +66,52 @@ impl Pin for gpio::gpiof::PF5<gpio::Output<gpio::PushPull>> {}
 impl Pin for gpio::gpiof::PF6<gpio::Output<gpio::PushPull>> {}
 impl Pin for gpio::gpiof::PF7<gpio::Output<gpio::PushPull>> {}
 
-pub struct Signal<T: Pin> {
-    pin: T,
+#[derive(Debug, Default)]
+pub struct Signal<'a, T: Pin + 'a>
+where
+    &'a mut T: Default,
+{
+    pin: &'a mut T,
+    state: SignalState,
+}
+
+#[allow(deprecated)]
+impl<T: Pin + prelude::_embedded_hal_digital_OutputPin> Signal<'static, T>
+where
+    &'static mut T: Default,
+{
+    pub fn new(pin: &'static mut T) -> Self {
+        Signal {
+            pin,
+            state: SignalState::default(),
+        }
+    }
+
+    pub fn set(&mut self, value: bool) {
+        if value {
+            self.pin.set_high();
+            self.state = SignalState::High;
+        } else {
+            self.pin.set_low();
+            self.state = SignalState::Low;
+        }
+    }
+
+    pub fn set_high(&mut self) {
+        self.pin.set_high();
+        self.state = SignalState::High;
+    }
+
+    pub fn set_low(&mut self) {
+        self.pin.set_low();
+        self.state = SignalState::Low;
+    }
+
+    pub fn is_set(&mut self) -> bool {
+        self.state == SignalState::High
+    }
+
+    pub fn get_state(&self) -> SignalState {
+        self.state
+    }
 }
