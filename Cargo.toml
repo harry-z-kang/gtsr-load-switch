@@ -5,7 +5,8 @@ edition = "2021"
 keywords = ["arm", "cortex-m", "load switch"]
 categories = ["embedded", "no-std"]
 license = "MIT"
-authors = ["Zixuan Kang <zkang35@gatech.edu>", "Isaac Weintraub"]
+repository = "https://github.com/harry-z-kang/gtsr-load-switch"
+authors = ["Zixuan Kang <zkang35@gatech.edu>", "Isaac Weintraub <weintraub@gatech.edu>"]
 
 [dependencies.tm4c123x-hal]
 version = "0.10.2"
