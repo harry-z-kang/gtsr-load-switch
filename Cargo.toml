@@ -5,6 +5,7 @@ edition = "2021"
 keywords = ["arm", "cortex-m", "load switch"]
 categories = ["embedded", "no-std"]
 license = "MIT"
+description = "Load Switch library for Solar Racing @ GT"
 repository = "https://github.com/harry-z-kang/gtsr-load-switch"
 authors = ["Zixuan Kang <zkang35@gatech.edu>", "Isaac Weintraub <weintraub@gatech.edu>"]
 
