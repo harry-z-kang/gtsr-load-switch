@@ -2,7 +2,7 @@
 name = "load_switch"
 version = "0.1.0"
 edition = "2021"
-keywords = ["arm", "cortex-m", "load switch"]
+keywords = ["arm", "cortex-m", "load-switch"]
 categories = ["embedded", "no-std"]
 license = "MIT"
 description = "Load Switch library for Solar Racing @ GT"
